@@ -7,7 +7,9 @@
     <title>Add Task</title>
 </head>
 <body>
-    
+    <%if (error){%>
+        <p style="color: red;"><%=error%></p>
+    <%}%>
 
     <form action="/add" method="post">
         <div>

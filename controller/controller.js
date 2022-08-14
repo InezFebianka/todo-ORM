@@ -11,7 +11,7 @@ class Controller {
     }
 
     static form(req, res){
-        let error = req.query.error == 'true'
+        let error = req.query.error
         res.render('addTask', {error})
     }
 
@@ -28,7 +28,7 @@ class Controller {
         if (!body.status) error.push('Status must be selected')
 
         if(error.length !== 0){
-            res.redirect(`addTask?error=${error}`)
+            res.redirect(`add?error=${error}`)
         } else {
             Task.create(body)
                 .then(result=>{
@@ -72,7 +72,18 @@ class Controller {
     }
     
     static deleteTask(req, res){
-        res.send('masuk')
+        let targetedId = req.params.id
+        Task.destroy({
+            where: {
+                id: targetedId
+            }
+        })
+            .then(result=>{
+                res.redirect('/')
+            })
+            .catch(err=>{
+                res.send(err)
+            })
     }
 }
 
