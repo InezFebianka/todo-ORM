@@ -11,11 +11,34 @@ class Controller {
     }
 
     static form(req, res){
-        res.send('masuk')
+        let error = req.query.error == 'true'
+        res.render('addTask', {error})
     }
 
     static create(req, res){
-        res.send('masuk')
+        let body = {
+            content: req.body.content,
+            status: req.body.status,
+            createdAt : new Date(),
+            updatedAt : new Date()
+        }
+
+        let error = []
+        if (!body.content) error.push('Content is required')
+        if (!body.status) error.push('Status must be selected')
+
+        if(error.length !== 0){
+            res.redirect(`addTask?error=${error}`)
+        } else {
+            Task.create(body)
+                .then(result=>{
+                    res.redirect('/')
+                })
+                .catch(err=>{
+                    res.send(err)
+                })
+        }
+        
     }
 
     static toComplete(req, res){

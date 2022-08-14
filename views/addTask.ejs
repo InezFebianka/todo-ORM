@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task</title>
+</head>
+<body>
+    
+
+    <form action="/add" method="post">
+        <div>
+            <label for="content">Content: </label>
+            <input type="text" name="content" id="content">
+        </div>
+        <div>
+            <label for="status">Status: </label>
+            <select name="status">
+                <option disabled selected>Select status</option>
+                <option value="complete">Complete</option>
+                <option value="uncomplete">Uncomplete</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</body>
+</html>

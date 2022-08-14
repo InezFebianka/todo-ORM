@@ -36,7 +36,7 @@
                 <td><%=el.content%></td>
                 <td><%=el.status%></td>
                 <%let action = 'complete'%>
-                <%if (el.status = 'complete'){%>
+                <%if (el.status === 'complete'){%>
                     <%action = 'uncomplete'%>
                 <%}%>
                 <td>
