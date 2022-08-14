@@ -1,6 +1,13 @@
+const {Task} = require("../models")
 class Controller {
     static index(req, res){
-        res.send('masuk')
+        Task.findAll()
+            .then(result=>{
+                res.render('index',{result})
+            })
+            .catch(err => {
+                res.send(err)
+            })
     }
 
     static form(req, res){

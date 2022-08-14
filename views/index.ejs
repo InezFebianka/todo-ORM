@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <style>
+        table, th, td{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <!-- ADD BUTTON -->
+    <div>
+      <a href="/add"><button>Add Task</button></a>  
+    </div>
+    
+
+    <!-- TODO LIST TABLE -->
+    <%if (result.length !== 0){%>
+        <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Content</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%result.forEach((el)=>{%>
+            <tr>
+                <td><%=el.id%></td>
+                <td><%=el.content%></td>
+                <td><%=el.status%></td>
+                <%let action = 'complete'%>
+                <%if (el.status = 'complete'){%>
+                    <%action = 'uncomplete'%>
+                <%}%>
+                <td>
+                    <a href="/<%=action%>/<%=el.id%>"><button><%=action%></button></a>
+                    <a href="/delete/<%=el.id%>"><button>Delete</button></a>
+                </td>
+            </tr>
+            <%})%>
+
+        </tbody>
+    </table>
+    <%} else {%>
+        <p>Yey! you have no task~</p>
+    <%}%>
+    
+</body>
+</html>
