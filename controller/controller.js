@@ -42,11 +42,33 @@ class Controller {
     }
 
     static toComplete(req, res){
-        res.send('masuk')
+        let targetedId = req.params.id
+        Task.update({status: 'complete'}, {
+            where: {
+                id: targetedId
+            }
+        })
+            .then(result=>{
+                res.redirect('/')
+            })
+            .catch(err=>{
+                res.send(err)
+            })
     }
 
     static toUncomplete(req, res){
-        res.send('masuk')
+        let targetedId = req.params.id
+        Task.update({status: 'uncomplete'}, {
+            where: {
+                id: targetedId
+            }
+        })
+            .then(result=>{
+                res.redirect('/')
+            })
+            .catch(err=>{
+                res.send(err)
+            })
     }
     
     static deleteTask(req, res){
